@@ -7,15 +7,18 @@ class ShortenUrl extends Component {
     shortUrl: "",
   };
 
+  BACKEND_URL = process.env.REACT_APP_BACKEND_URL || "http://localhost:8080";
+
   handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     this.setState({ longUrl: event.target.value });
   };
 
   handleShorten = async () => {
     try {
-        const response = await axios.post("http://localhost:8080/shorten", {
+        const response = await axios.post(`${this.BACKEND_URL}/shorten`, {
             longUrl: this.state.longUrl,
         });
+
 
         this.setState({ shortUrl: response.data });
     } catch (error) {

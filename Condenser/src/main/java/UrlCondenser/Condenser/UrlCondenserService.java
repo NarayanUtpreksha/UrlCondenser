@@ -1,5 +1,6 @@
 package UrlCondenser.Condenser;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.security.MessageDigest;
@@ -7,7 +8,10 @@ import java.security.NoSuchAlgorithmException;
 
 @Service
 public class UrlCondenserService {
-    private static final String BASE_URL  = "http://localhost:8080/";
+
+    @Value("${app.base-url}")  // Load from application.properties
+    private String BASE_URL; // the base url comes from application properties making it dynamic
+
     private static final String PREDEFINED_STRING = "UrlCondenser";
 
     private final RedisClient redisClient;  // Inject RedisClient
@@ -44,6 +48,6 @@ public class UrlCondenserService {
     }
 
     public String getLongUrl(String shortId) {
-        return redisClient.get(shortId);
+            return redisClient.get(shortId);
     }
 }

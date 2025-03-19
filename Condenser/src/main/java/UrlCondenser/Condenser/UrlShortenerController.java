@@ -6,11 +6,11 @@ import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 
-
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "${app.allowed-origins}")
 @RestController
 @RequestMapping("/")
 public class UrlShortenerController {
+
     @Autowired
     private UrlCondenserService urlShortenerService;
 
@@ -23,8 +23,6 @@ public class UrlShortenerController {
     @GetMapping("/{shortId}")
     public ResponseEntity<Void> redirect(@PathVariable String shortId) {
         String longUrl = urlShortenerService.getLongUrl(shortId);
-        return (longUrl != null) ?ResponseEntity.status(302).location(URI.create(longUrl)).build() : ResponseEntity.notFound().build();
+        return (longUrl != null) ? ResponseEntity.status(302).location(URI.create(longUrl)).build() : ResponseEntity.notFound().build();
     }
-
-
 }
