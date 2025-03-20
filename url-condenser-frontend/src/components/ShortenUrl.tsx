@@ -7,7 +7,7 @@ class ShortenUrl extends Component {
     shortUrl: "",
   };
 
-  BACKEND_URL = process.env.REACT_APP_BACKEND_URL || "http://localhost:8080";
+  BACKEND_URL = process.env.REACT_APP_API_BASE_URL || "http://localhost:8080";
 
   handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     this.setState({ longUrl: event.target.value });
