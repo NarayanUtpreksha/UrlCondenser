@@ -30,7 +30,7 @@ public class UrlCondenserService {
         } while (redisClient.exists(shortUrl)); // check for collision
 
         redisClient.set(shortUrl, longUrl); // Store in Redis
-        return BASE_URL + shortUrl;
+        return BASE_URL + "/"+ shortUrl;
     }
 
     private static String sha1Hash(String input) {
