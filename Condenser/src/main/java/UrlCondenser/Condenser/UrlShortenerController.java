@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 
-@CrossOrigin(origins = "${app.allowed-origins}")
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/api")
 public class UrlShortenerController {
