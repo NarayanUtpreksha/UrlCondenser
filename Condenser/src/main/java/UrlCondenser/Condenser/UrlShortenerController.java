@@ -8,7 +8,7 @@ import java.net.URI;
 
 @CrossOrigin(origins = "${app.allowed-origins}")
 @RestController
-@RequestMapping("/")
+@RequestMapping("/api")
 public class UrlShortenerController {
 
     @Autowired
