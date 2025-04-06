@@ -1,0 +1,115 @@
+.shorten-url-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  background-color: #f9f9f9;
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+.title {
+  font-size: 2rem;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.input-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 500px;
+}
+
+.url-input {
+  width: 100%;
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  box-sizing: border-box;
+}
+
+.shorten-button {
+  padding: 10px 20px;
+  font-size: 1rem;
+  color: #fff;
+  background-color: #007bff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.shorten-button:hover {
+  background-color: #0056b3;
+}
+
+.shortened-url {
+  margin-top: 20px;
+  font-size: 1.2rem;
+  color: #333;
+}
+
+.shortened-url a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.shortened-url a:hover {
+  text-decoration: underline;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .title {
+    font-size: 1.5rem;
+  }
+
+  .url-input {
+    font-size: 0.9rem;
+  }
+
+  .shorten-button {
+    font-size: 0.9rem;
+  }
+
+  .shortened-url {
+    font-size: 1rem;
+  }
+}
+
+/* Define theme color */
+:root {
+  --theme-color: #6a1b9a; /* Purple theme color */
+  --theme-color-hover: #4a148c; /* Darker purple for hover effects */
+}
+
+/* Update existing styles to use the theme color */
+.url-input {
+  border: 2px solid var(--theme-color);
+}
+
+.url-input:focus {
+  border-color: var(--theme-color-hover);
+}
+
+.shorten-button {
+  background-color: var(--theme-color);
+}
+
+.shorten-button:hover {
+  background-color: var(--theme-color-hover);
+}
+
+.shortened-url a {
+  color: var(--theme-color);
+}
+
+.shortened-url a:hover {
+  color: var(--theme-color-hover);
+}

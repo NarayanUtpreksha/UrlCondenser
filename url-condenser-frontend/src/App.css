@@ -36,3 +36,23 @@
     transform: rotate(360deg);
   }
 }
+/* Ensure the body and root container take up the full viewport height */
+body, html, #root {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  overflow: hidden; /* Prevent vertical scrollbar unless necessary */
+}
+
+/* Allow scrolling only when content exceeds the viewport */
+html {
+  overflow-y: auto;
+}
+
+/* Ensure the main content fills the remaining space */
+.main-content {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

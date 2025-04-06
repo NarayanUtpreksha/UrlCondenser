@@ -6,15 +6,14 @@ import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 
-@CrossOrigin(origins = "*")
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/")
 public class UrlShortenerController {
 
     @Autowired
     private UrlCondenserService urlShortenerService;
 
-    @PostMapping("/shorten")
+    @PostMapping("/api/shorten")
     public ResponseEntity<String> shortenUrl(@RequestBody ShortenUrlRequest shortenUrlRequest) {
         String shortUrl = urlShortenerService.shortenUrl(shortenUrlRequest.longUrl);
         return ResponseEntity.ok(shortUrl);
