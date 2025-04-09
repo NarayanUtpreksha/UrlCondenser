@@ -62,7 +62,7 @@ docker run -d --name redis-container -p 6379:6379 redis
 #### **Run Spring Boot Backend**
 ```bash
 cd backend
-mvn clean install
+mvn clean install -Dspring-boot.run.profiles=dev
 mvn spring-boot:run
 ```
 > The backend will run on `http://localhost:8080`

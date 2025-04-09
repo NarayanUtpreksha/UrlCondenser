@@ -1,5 +1,3 @@
-version: "1"
-
 services:
   redis:
     image: redis:latest
@@ -11,6 +9,21 @@ services:
       - redis_data:/data
     command: ["redis-server", "--appendonly", "yes"]
 
+  postgres:
+    image: postgres:15
+    container_name: postgres_urlcondenser
+    restart: always
+    environment:
+      POSTGRES_USER: urlcondenser
+      POSTGRES_PASSWORD: urlcondenser
+      POSTGRES_DB: url_condenser_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
 volumes:
   redis_data:
+    driver: local
+  postgres_data:
     driver: local

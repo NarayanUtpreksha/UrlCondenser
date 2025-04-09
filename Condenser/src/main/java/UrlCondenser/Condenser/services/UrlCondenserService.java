@@ -1,10 +1,19 @@
-package UrlCondenser.Condenser;
+package UrlCondenser.Condenser.services;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import UrlCondenser.Condenser.RedisClient;
+import UrlCondenser.Condenser.models.ShortenedUrl;
+import UrlCondenser.Condenser.models.User;
+import UrlCondenser.Condenser.repositories.ShortenedUrlRepository;
+import UrlCondenser.Condenser.repositories.UserRepository;
+
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UrlCondenserService {
@@ -15,6 +24,12 @@ public class UrlCondenserService {
     private static final String PREDEFINED_STRING = "UrlCondenser";
 
     private final RedisClient redisClient;  // Inject RedisClient
+
+    @Autowired
+    private UserRepository userRepository;
+
+    @Autowired
+    private ShortenedUrlRepository shortenedUrlRepository;
 
     public UrlCondenserService(RedisClient redisClient) {
         this.redisClient = redisClient;
@@ -49,5 +64,22 @@ public class UrlCondenserService {
 
     public String getLongUrl(String shortId) {
             return redisClient.get(shortId);
+    }
+
+
+    public List<ShortenedUrl> getUrlsByUser(Long userId) {
+        return shortenedUrlRepository.findByUserId(userId);
+    }
+    
+    public void saveUrlForUser(String longUrl, String shortUrl, String userEmail) {
+        Optional<User> userOptional = userRepository.findByEmail(userEmail);
+        if (userOptional.isPresent()) {
+            User user = userOptional.get();
+            ShortenedUrl shortenedUrl = new ShortenedUrl();
+            shortenedUrl.setLongUrl(longUrl);
+            shortenedUrl.setShortUrl(shortUrl);
+            shortenedUrl.setUser(user);
+            shortenedUrlRepository.save(shortenedUrl);
+        }
     }
 }
