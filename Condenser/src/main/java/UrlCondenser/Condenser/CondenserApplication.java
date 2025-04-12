@@ -14,16 +14,16 @@ public class CondenserApplication {
     }
 
     @Bean
-public WebMvcConfigurer corsConfigurer() {
-    return new WebMvcConfigurer() {
-        @Override
-        public void addCorsMappings(CorsRegistry registry) {
-            registry.addMapping("/**") // Allow all paths
-                    .allowedOrigins("http://localhost:3000", "https://ec2-51-21-127-20.eu-north-1.compute.amazonaws.com")
-                    .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
-                    .allowedHeaders("*")
-                    .allowCredentials(true);
-        }
-    };
-}
+	public WebMvcConfigurer corsConfigurer() {
+		return new WebMvcConfigurer() {
+			@Override
+			public void addCorsMappings(CorsRegistry registry) {
+				registry.addMapping("/**") // Allow all paths
+						.allowedOrigins("http://localhost:3000", "https://ec2-51-21-127-20.eu-north-1.compute.amazonaws.com")
+						.allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
+						.allowedHeaders("*")
+						.allowCredentials(true);
+			}
+		};
+	}
 }
